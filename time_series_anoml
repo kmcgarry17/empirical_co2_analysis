@@ -1,5 +1,5 @@
 def F_detrend(var):
-    """ computes time series anomaly (remove the trand)"""
+    """ computes time series anomaly (remove the trend)"""
 
     xi = np.arange(np.size(var))
     slope, intercept, r_value, p_value, std_err = stats.linregress(xi,var)
