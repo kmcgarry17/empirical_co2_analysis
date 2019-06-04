@@ -10,12 +10,14 @@ def F_corr_coef_regr(var_x,var_y,p_crf,p_rgr):
             
     # for var_x
     xi = np.arange(np.size(var_x))
-    slope, intercept, r_value, p_value, std_err = stats.linregress(xi,var_x)
+    mask = ~np.isnan(var_x) 
+    slope, intercept, r_value, p_value, std_err = stats.linregress(xi,var_x[mask])
     line_var_x = slope*xi+intercept
     var_x_td = var_x - line_var_x
             
     ### for var_y
-    slope, intercept, r_value, p_value, std_err = stats.linregress(xi,var_y)
+    mask = ~np.isnan(var_y) 
+    slope, intercept, r_value, p_value, std_err = stats.linregress(xi,var_y[mask])
     line_var_y = slope*xi+intercept
     var_x_td = var_y - line_var_y
        
