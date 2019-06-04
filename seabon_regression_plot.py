@@ -13,7 +13,8 @@ plt.subplot(1,1,1)
 X = var_x
 Y =  var_y
 (r, p) = stats.pearsonr(X, Y)
-slope, intercept, r_value, p_value, slope_std_error = stats.linregress(X,Y)
+mask = ~np.isnan(X) & ~np.isnan(Y)
+slope, intercept, r_value, p_value, slope_std_error = stats.linregress(X[mask],Y[mask])
 predict_y = slope * X + intercept
 
 ax = sns.regplot(x=X, y=Y, color="royalblue",line_kws={'label':'$y=%3.7s*x+%3.7s$'%(slope, intercept)},scatter_kws={"s": ssp})
